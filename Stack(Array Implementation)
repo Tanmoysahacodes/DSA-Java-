@@ -1,0 +1,79 @@
+//
+Stack(Array Implementation)
+#include <stdio.h>
+#define MAX 5
+
+int stack[MAX];
+int top = -1;
+
+void push(int value)
+{
+    if (top == MAX - 1)
+    {
+        printf("Stack Overflow\n");
+    }
+    else
+    {
+        top++;
+        stack[top] = value;
+        printf("%d inserted into Stack\n", value);
+    }
+}
+
+int pop()
+{
+    if (top == -1)
+    {
+        printf("Stack Underflow\n");
+        return -1;
+    }
+    else
+    {
+        int del = stack[top];
+        top--;
+        return del;
+    }
+}
+
+void peek()
+{
+    if (top == -1)
+    {
+        printf("Stack Underflow\n");
+        printf("---No elements in Stack---");
+        return;
+    }
+    else
+    {
+        printf("Top element of Stack: %d\n", stack[top]);
+    }
+}
+
+void display()
+{
+    int i;
+    if (top == -1)
+    {
+        printf("Stack Underflow\n");
+    }
+
+    for (i = 0; i <= top; i++)
+    {
+        printf("%d\n", stack[i]);
+    }
+}
+
+int main()
+{
+    push(10);
+    push(20);
+    push(30);
+    peek();
+    printf("Popped element : %d\n", pop());
+    push(40);
+    push(50);
+    display();
+
+    return 0;
+}
+
