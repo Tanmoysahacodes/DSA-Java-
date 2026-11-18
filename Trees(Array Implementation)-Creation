@@ -1,0 +1,36 @@
+// Array Implementation
+
+#include <stdio.h>
+#define MAX 10
+
+int tree[MAX];
+int n = 0;
+void create_tree()
+{
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("Enter element at index %d:- ", i);
+        scanf("%d", &tree[i]);
+    }
+}
+
+void display()
+{
+    printf("Binary Tree elements:-");
+
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d ", tree[i]);
+    }
+}
+
+int main()
+{
+    create_tree();
+    display();
+
+    return 0;
+}
