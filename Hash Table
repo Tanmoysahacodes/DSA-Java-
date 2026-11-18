@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+#define SIZE 10
+
+int hashTable[SIZE];
+
+// Hash Function
+int hashFunction(int key)
+{
+    return key % SIZE;
+}
+
+// Insert Function
+void insert(int key)
+{
+    int index;
+
+    index = hashFunction(key);
+
+    if (hashTable[index] == -1)
+    {
+        hashTable[index] = key;
+    }
+    else
+    {
+        printf("Collision occurred for key = %d\n", key);
+    }
+}
+
+// Display Function
+void display()
+{
+    int i;
+
+    printf("\nHash Table:\n");
+
+    for (i = 0; i < SIZE; i++)
+    {
+        if (hashTable[i] == -1)
+        {
+            printf("Index %d : Empty\n", i);
+        }
+        else
+        {
+            printf("Index %d : %d\n", i, hashTable[i]);
+        }
+    }
+}
+
+// Main Function
+int main()
+{
+    int i;
+
+    // Initialize Hash Table
+    for (i = 0; i < SIZE; i++)
+    {
+        hashTable[i] = -1;
+    }
+
+    insert(10);
+    insert(20);
+    insert(15);
+    insert(25);
+    insert(7);
+    insert(17);
+
+    display();
+
+    return 0;
+}
