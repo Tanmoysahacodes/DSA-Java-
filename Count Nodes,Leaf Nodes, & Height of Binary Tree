@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node
+{
+    int data;
+    struct node *left, *right;
+};
+
+struct node *
+create_node(int value)
+{
+    struct node *newnode = (struct node *)malloc(sizeof(struct node));
+
+    newnode->data = value;
+    newnode->left = NULL;
+    newnode->right = NULL;
+
+    return newnode;
+}
+
+int CountNodes(struct node *root)
+{
+    if (root == NULL)
+        return 0;
+
+    return 1 + CountNodes(root->left) + CountNodes(root->right); // Using recursion...
+}
+
+int CountleafNodes(struct node *root)
+{
+    if (root == NULL)
+        return 0;
+
+    if (root->left == NULL && root->right == NULL)
+        return 1;
+
+    return CountleafNodes(root->left) + CountleafNodes(root->right);
+}
+
+int height(struct node *root)
+{
+    if (root == NULL)
+        return 0;
+
+    int leftheight = height(root->left);
+    int rightheight = height(root->right);
+
+    if (leftheight > rightheight)
+        return leftheight + 1;
+    else
+        return rightheight + 1;
+}
+
+int main()
+{
+    struct node *root = create_node(1);
+    root->left = create_node(2);
+    root->right = create_node(3);
+    root->left->left = create_node(4);
+    root->left->right = create_node(5);
+    root->right->left = create_node(6);
+    root->right->right = create_node(7);
+
+    printf("Total Nodes = %d\n", CountNodes(root));
+    printf("Total Leaf Nodes = %d\n", CountleafNodes(root));
+    printf("Height = %d\n", height(root));
+
+    return 0;
+}
